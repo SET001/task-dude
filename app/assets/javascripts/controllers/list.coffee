@@ -1,4 +1,4 @@
-window.TasksListCtrl = ['$rootScope', 'Restangular', (self, Restangular) ->
+window.TasksListCtrl = ['$scope', 'Restangular', '$translate', (self, Restangular) ->
   
   self.tasks = Restangular.all('tasks').getList()
 

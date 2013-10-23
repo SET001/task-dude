@@ -20,3 +20,18 @@ html, body
 #footer
   text-align: center
   height: $footerheight
+
+
+.countries
+  min-width: 0
+  .country
+    background: url(<%=asset_path('country-flags.png')) no-repeat
+    width: 69px
+    height: 65px
+
+    &.country_russia
+      background-position: -190px -960px
+    &.country_england
+      background-position: -510px -350px
+    &.country_germany
+      background-position: -317px -262px

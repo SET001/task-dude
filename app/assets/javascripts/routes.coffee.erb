@@ -1,23 +1,8 @@
 window.app = angular.module('app', ['ngRoute', 'restangular', 'pascalprecht.translate'])
-  .config ['$routeProvider', '$translateProvider', ($routeProvider, $translateProvider) ->
+  .config ['$routeProvider', ($routeProvider) ->
     $routeProvider.when '/',
       templateUrl: '<%=asset_path('list.html')%>'
       controller: TasksListCtrl
 
     $routeProvider.otherwise({redirectTo: '/'})
-
-    $translateProvider.translations 'en',
-      tasks: 'Tasks'
-      new_task: 'New Task'
-      language: 'Language'
-    $translateProvider.translations 'ru',
-      tasks: 'Задания'
-      new_task: 'Новое задание'
-      language: 'Язык'
-    $translateProvider.translations 'de',
-      tasks: 'Aufgaben'
-      new_task: 'Neue Aufgabe'
-      language: 'Sprache'
-
-    $translateProvider.preferredLanguage 'en'
 ]

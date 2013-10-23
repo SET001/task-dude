@@ -3,13 +3,12 @@
     <h3 class="pull-left">Task Dude</h3>
 
     <div class="dropdown pull-right">
-      <a data-toggle="dropdown" href="#" translate="LANGUAGE"></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <li>dsfsdf</li>
-        <li>ddfd</li>
+      <a data-toggle="dropdown" href="#">{{ 'language' | translate}}</a>
+      <ul class="dropdown-menu countries" role="menu" aria-labelledby="dLabel">
+        <li><a href ng-click="changeLang('ru')" class="country country_russia"></a></li>
+        <li><a href ng-click="changeLang('en')" class="country country_england"></a></li>
+        <li><a href ng-click="changeLang('de')" class="country country_germany"></a></li>
       </ul>
     </div>
   </div>
-
-  
 </div>
