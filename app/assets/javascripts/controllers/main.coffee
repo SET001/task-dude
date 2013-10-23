@@ -1,4 +1,0 @@
-window.MainCtrl = ['$rootScope', (self) ->
-  
-
-]

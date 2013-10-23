@@ -21,13 +21,17 @@ html, body
   text-align: center
   height: $footerheight
 
-
 .countries
   min-width: 0
   .country
     background: url(<%=asset_path('country-flags.png')) no-repeat
     width: 69px
     height: 65px
+
+.tasks-list
+  td.nav
+    width: 50px
+    text-align: center
 
     &.country_russia
       background-position: -190px -960px
