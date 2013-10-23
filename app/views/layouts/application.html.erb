@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TaskDude</title>
+  <%= stylesheet_link_tag "vendors", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="app" ng-controller="CoreCtrl">
+  <div id="wrapper" ng-controller="AppCtrl">
+
+    <%= render 'header' %>
+
+    <div class="container" ng-view></div>
+    
+  </div>
+  <%= render 'footer' %>
+
+  <%= javascript_include_tag "vendors" %>
+  <%= javascript_include_tag "application" %>
+</body>
+</html>

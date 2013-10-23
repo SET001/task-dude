@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1>{{ 'Tasks' | translate}}</h1>
+</div>
+<a href ng-click="new_task()" class="btn btn-primary btn-primary">
+  <span class="glyphicon glyphicon-plus-sign"></span>
+  {{ 'New Task' | translate}}
+</a>
+
+<table class="table">
+  {{projects}}
+</table>
