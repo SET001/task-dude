@@ -1,0 +1,14 @@
+<ul class="pull-right list-inline controls">
+  <li><a href title="{{'add_subtask'|translate}}" ng-click="add_subtask(task)" class="glyphicon glyphicon-plus-sign text-muted"></a></li>
+  <li><a href title="{{'edit'|translate}}" ng-click="save(task)" class="glyphicon glyphicon-edit text-muted"></a></li>
+  <li><a href title="{{'remove'|translate}}" ng-click="remove(task)" class="glyphicon glyphicon-remove-sign text-muted"></a></li>
+</ul>
+
+<ul class="pull-left list-inline expand" ng-class="{expandable: task.subtasks_count}">
+  <li>
+    <a href title="{{'expand'|translate}}" ng-click="expand(task)" class="glyphicon glyphicon-arrow-down"></a>
+  </li>
+</ul>
+<div class="name">{{task.name}}</div>
+
+<div class="task" ng-repeat="task in task.subtasks" ng-include="'/assets/index.html'"></div>

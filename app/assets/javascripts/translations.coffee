@@ -1,4 +1,14 @@
 window.app.config ['$translateProvider', ($translateProvider) ->
+  $translateProvider.translations 'en',
+    tasks: 'Tasks'
+    new_task: 'New Task'
+    task_mame: 'Task name'
+    total_tasks: 'Total tasks'
+    indeed_remove: 'Are you sure you want remove this task?'
+    remove: 'Remove'
+    edit: 'Edit'
+    expand: 'Expand'
+    language: 'Language'
   $translateProvider.translations 'ru',
     tasks: 'Задания'
     new_task: 'Новое задание'
@@ -8,15 +18,6 @@ window.app.config ['$translateProvider', ($translateProvider) ->
     remove: 'Удалить'
     edit: 'Редактировать'
     language: 'Язык'
-  $translateProvider.translations 'en',
-    tasks: 'Tasks'
-    new_task: 'New Task'
-    task_mame: 'Task name'
-    total_tasks: 'Total tasks'
-    indeed_remove: 'Are you sure you want remove this task?'
-    remove: 'Remove'
-    edit: 'Edit'
-    language: 'Language'
   $translateProvider.translations 'de',
     tasks: 'Aufgaben'
     new_task: 'Neue Aufgabe'

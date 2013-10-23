@@ -1,13 +1,17 @@
 class TasksController < ApplicationController
 
   def index
-    render :json => Task.all.to_json()
+    render :json => Task.where(:task_id => nil).to_json()
   end
 
   def create
     task = Task.create(task_params)
     task.save()
     render :json => task.to_json()
+  end
+
+  def subtasks
+    render :json => Task.find(params[:id]).tasks.find_all()
   end
 
   def destroy
@@ -23,6 +27,6 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:name)
+      params.require(:task).permit(:name, :task, :task_id)
     end
 end

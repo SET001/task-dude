@@ -1,7 +1,14 @@
 window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $http, Restangular, $translate) ->
 
+  self.add_subtask = (parent_task) ->
+    bootbox.prompt $translate('task_mame'), (name) ->
+      $http.post('tasks', {name:name, task_id: parent_task.id }).then (task) ->
+        if parent_task.subtasks
+          parent_task.subtasks.push task.data
+    no
+
   self.save = (task = null) ->
-    bootbox.prompt 
+    bootbox.prompt
       title: $translate('task_mame')
       value: if task then task.name else ''
       callback: (name) ->
@@ -12,8 +19,6 @@ window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $
           else
             $http.put('tasks', {id: task.id, name: name}).then (response)->
               task.name = response.data.name
-              console.log task
-              console.log self.tasks
     no
 
   self.fetch_list = ->
@@ -29,4 +34,10 @@ window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $
       $http.delete("tasks/#{task.id}").then ->
         self.tasks = _.reject self.tasks, id:task.id
     no
+
+  self.expand = (task) ->
+    $http.get("subtasks/#{task.id}").then (response) ->
+      task.subtasks = response.data
+      console.log self.tasks
+
 ]
