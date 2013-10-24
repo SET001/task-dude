@@ -1,10 +1,14 @@
 window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $http, Restangular, $translate) ->
+  Tasks = Restangular.all('tasks')
+  Tasks.getList().then (tasks) ->
+      self.tasks = tasks
 
   self.add_subtask = (parent_task) ->
     bootbox.prompt $translate('task_mame'), (name) ->
-      $http.post('tasks', {name:name, task_id: parent_task.id }).then (task) ->
-        if parent_task.subtasks
-          parent_task.subtasks.push task.data
+      if name
+        Tasks.post({name:name, task_id: parent_task.id }).then (task) ->
+          if parent_task.subtasks
+            parent_task.subtasks.push task
     no
 
   self.save = (task = null) ->
@@ -21,23 +25,22 @@ window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $
               task.name = response.data.name
     no
 
-  self.fetch_list = ->
-    # self.tasks = Restangular.all('tasks').getList()
-    $http.get('tasks').then (tasks)->
-      self.tasks = tasks.data
-
-  self.fetch_list()
-
-
-  self.remove = (task) ->
-    bootbox.confirm $translate('indeed_remove'), ->
-      $http.delete("tasks/#{task.id}").then ->
-        self.tasks = _.reject self.tasks, id:task.id
+  self.remove = (task, list) ->
+    bootbox.confirm $translate('indeed_remove'), (res) ->
+      if res
+        $http.delete("tasks/#{task.id}").then ->
+          list = _.reject list, id:task.id
     no
 
-  self.expand = (task) ->
+  self.expand_children = (task) ->
+
+    Tasks.getList({for: task.id}).then (tasks) ->
+      task.subtasks = tasks
+      console.log tasks
+    # $http.get("subtasks/#{task.id}").then (response) ->
+    #   task.subtasks = response.data
+
+  self.shrink_children = (task) ->
     $http.get("subtasks/#{task.id}").then (response) ->
       task.subtasks = response.data
-      console.log self.tasks
-
 ]

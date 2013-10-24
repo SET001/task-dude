@@ -5,9 +5,8 @@
 </ul>
 
 <ul class="pull-left list-inline expand" ng-class="{expandable: task.subtasks_count}">
-  <li>
-    <a href title="{{'expand'|translate}}" ng-click="expand(task)" class="glyphicon glyphicon-arrow-down"></a>
-  </li>
+  <li ng-show="!expanded"><a href title="{{'expand'|translate}}" ng-click="expand_children(task)" class="glyphicon glyphicon-arrow-down"></a></li>
+  <!-- <li ng-show="expanded"><a href title="{{'shrink'|translate}}" ng-click="expanded=false" class="glyphicon glyphicon-arrow-up"></a></li> -->
 </ul>
 <div class="name">{{task.name}}</div>
 

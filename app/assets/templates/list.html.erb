@@ -11,17 +11,3 @@
 <div class="tasks-list">
   <div class="task" ng-repeat="task in tasks" ng-class="{'text-muted':table.status==1}" ng-include="'/assets/index.html'">
 </div>
-<!-- <table class="table table-hover tasks-list">
-  <tr ng-repeat="task in tasks" ng-class="{'text-muted':table.status==1}">
-    <td class="nav"><a href title="{{'expand'|translate}}" ng-click="expand(task)" class="glyphicon glyphicon-arrow-down"></td>
-    <td>
-      {{task.name}}
-      <div class="row" ng-repeat="subtask in task.subtasks">
-        {{subtask.name}}
-      </div>
-    </td>
-    <td class="nav"><a href title="{{'edit'|translate}}" ng-click="add_subtask(task)" class="glyphicon glyphicon-plus-sign"></a></td>
-    <td class="nav"><a href title="{{'edit'|translate}}" ng-click="save(task)" class="glyphicon glyphicon-edit"></a></td>
-    <td class="nav"><a href title="{{'remove'|translate}}" ng-click="remove(task)" class="glyphicon glyphicon-remove-sign"></a></td>
-  </tr>
-</table> -->

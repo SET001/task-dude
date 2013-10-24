@@ -1,12 +1,18 @@
 class TasksController < ApplicationController
 
   def index
-    render :json => Task.where(:task_id => nil).to_json()
+    parent_id = params[:for] ? params[:for] : nil
+    render :json => Task.where(:task_id => parent_id).to_json()
   end
 
   def create
     task = Task.create(task_params)
     task.save()
+    if task.task_id
+      parent = Task.find task.task_id
+      parent.subtasks_count += 1
+      parent.save()
+    end
     render :json => task.to_json()
   end
 
