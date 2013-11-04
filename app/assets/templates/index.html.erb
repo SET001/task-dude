@@ -1,13 +1,21 @@
-<ul class="pull-right list-inline controls">
-  <li><a href title="{{'add_subtask'|translate}}" ng-click="add_subtask(task)" class="glyphicon glyphicon-plus-sign text-muted"></a></li>
-  <li><a href title="{{'edit'|translate}}" ng-click="save(task)" class="glyphicon glyphicon-edit text-muted"></a></li>
-  <li><a href title="{{'remove'|translate}}" ng-click="remove(task)" class="glyphicon glyphicon-remove-sign text-muted"></a></li>
-</ul>
+<div class="task" ng-repeat="task in tasks" ng-class="{'text-muted done':task.status==1}">
+  <ul class="pull-right list-inline controls">
+    <li><a href title="{{'add_subtask'|translate}}" ng-click="add_subtask(task)" class="glyphicon glyphicon-plus-sign text-muted"></a></li>
+    <li><a href title="{{'edit'|translate}}" ng-click="save(task)" class="glyphicon glyphicon-edit text-muted"></a></li>
+    <li><a href title="{{'remove'|translate}}" ng-click="remove(task, $parent)" class="glyphicon glyphicon-remove-sign text-muted"></a></li>
+  </ul>
+  
+  <ul class="pull-left list-inline">
+    <li><a href title="{{'mark_done'|translate}}" ng-click="toggle_status(task)" class="glyphicon glyphicon-ok"></a></li>
+  </ul>
 
-<ul class="pull-left list-inline expand" ng-class="{expandable: task.subtasks_count}">
-  <li ng-show="!expanded"><a href title="{{'expand'|translate}}" ng-click="expand_children(task)" class="glyphicon glyphicon-arrow-down"></a></li>
-  <!-- <li ng-show="expanded"><a href title="{{'shrink'|translate}}" ng-click="expanded=false" class="glyphicon glyphicon-arrow-up"></a></li> -->
-</ul>
-<div class="name">{{task.name}}</div>
-
-<div class="task" ng-repeat="task in task.subtasks" ng-include="'/assets/index.html'"></div>
+  <div class="name">
+    <span class="pull-left">{{task.name}}</span>
+    <ul class="list-inline pull-left expand" ng-class="{expandable: task.subtasks_count}">
+      <li ng-show="!expanded"><a href title="{{'expand'|translate}}" ng-click="expand_children(task)" class="glyphicon glyphicon-arrow-down"></a></li>
+      <!-- <li ng-show="expanded"><a href title="{{'shrink'|translate}}" ng-click="expanded=false" class="glyphicon glyphicon-arrow-up"></a></li> -->
+    </ul>
+  </div>
+  
+  <div ng-init="tasks = task.subtask" ng-include="'/assets/index.html'">
+</div>

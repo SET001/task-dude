@@ -4,6 +4,9 @@
     clear: both
     widthL 100%
     border-top: 1px solid #dddddd
+    &.done
+      span
+        text-decoration: line-through
     .name
       overflow: hidden
       padding: 8px
@@ -22,3 +25,8 @@
       visibility: hidden
       &.expandable
         visibility: visible
+      li
+        padding: 0
+        margin-left: 10px
+  a:hover
+    text-decoration: none

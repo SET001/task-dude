@@ -9,6 +9,7 @@ window.app.config ['$translateProvider', ($translateProvider) ->
     edit: 'Edit'
     expand: 'Expand'
     language: 'Language'
+    mark_done: 'Mark done'
   $translateProvider.translations 'ru',
     tasks: 'Задания'
     new_task: 'Новое задание'

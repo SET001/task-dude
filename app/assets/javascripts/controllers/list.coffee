@@ -25,12 +25,14 @@ window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $
               task.name = response.data.name
     no
 
-  self.remove = (task, list) ->
-    bootbox.confirm $translate('indeed_remove'), (res) ->
-      if res
-        $http.delete("tasks/#{task.id}").then ->
-          list = _.reject list, id:task.id
-    no
+  self.remove = (task, parent) ->
+    console.log task, parent
+    
+    # bootbox.confirm $translate('indeed_remove'), (res) ->
+    #   if res
+    #     $http.delete("tasks/#{task.id}").then ->
+    #       list = _.reject list, id:task.id
+    # no
 
   self.expand_children = (task) ->
 
@@ -43,4 +45,9 @@ window.TasksListCtrl = ['$scope', '$http', 'Restangular', '$translate', (self, $
   self.shrink_children = (task) ->
     $http.get("subtasks/#{task.id}").then (response) ->
       task.subtasks = response.data
+
+  self.toggle_status = (task) ->
+    task.status = !task.status
+    $http.put('tasks', task).then (response)->
+      task.name = response.data.name
 ]
